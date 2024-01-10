@@ -41,4 +41,38 @@ function playRound(playerSelection,computerSelection) {
     return `You Lose! ${computerSelection} beats ${playerChoice}.`;
 }
 
+// Uses playRound to play best-of-five game that keeps score and reports a winner or loser at the end
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let round = 1; round <= 5; round++) {
+        const playerSelection = prompt("Enter your choice (Rock, Paper, or Scissors):");
+        const computerSelection = getComputerChoice(); 
+
+        console.log(`Round ${round}:`);
+        console.log(`Player chose ${playerSelection}`);
+        console.log(`Computer chose ${computerSelection}`);
+
+        const result = playRound(playerSelection, computerSelection);
+        console.log(result);
+
+        // Update scores based on the result
+        if (result.includes("Win")) {
+        playerScore++;
+        } else if (result.includes("Lose")) {
+        computerScore++;
+        }
+    }
+
+    // Determine the winner of the game
+    if (playerScore > computerScore) {
+        console.log("You win the game!");
+    } else if (playerScore < computerScore) {
+        console.log("You lose the game.");
+    } else {
+        console.log("It's a tie! No overall winner.");
+    }
+}
+
 
