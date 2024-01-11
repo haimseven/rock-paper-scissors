@@ -29,16 +29,17 @@ function playRound(playerSelection,computerSelection) {
     }
 
     // Check for player wins
-    if (
+    else if (
         (playerChoice === 'rock' && computerSelection === 'scissors') ||
         (playerChoice === 'paper' && computerSelection === 'rock') ||
         (playerChoice === 'scissors' && computerSelection === 'paper')
     ) {
         return `You Win! ${playerChoice} beats ${computerSelection}.`;
     }
-
     // If not a tie and not a player win, then it's a computer win
-    return `You Lose! ${computerSelection} beats ${playerChoice}.`;
+    else {
+            return `You Lose! ${computerSelection} beats ${playerChoice}.`;
+        }
 }
 
 // Uses playRound to play best-of-five game that keeps score and reports a winner or loser at the end
