@@ -30,12 +30,13 @@ function playRound(playerSelection,computerSelection) {
 
     // Check for player wins
     else if (
-        (playerChoice === 'rock' && computerSelection === 'scissors') ||
-        (playerChoice === 'paper' && computerSelection === 'rock') ||
-        (playerChoice === 'scissors' && computerSelection === 'paper')
+        (playerChoice === 'rock' && computerSelection.toLowerCase() === 'scissors') ||
+        (playerChoice === 'paper' && computerSelection.toLowerCase() === 'rock') ||
+        (playerChoice === 'scissors' && computerSelection.toLowerCase() === 'paper')
     ) {
         return `You Win! ${playerChoice} beats ${computerSelection}.`;
     }
+    
     // If not a tie and not a player win, then it's a computer win
     else {
             return `You Lose! ${computerSelection} beats ${playerChoice}.`;
