@@ -2,6 +2,14 @@ document.addEventListener("DOMContentLoaded", function(){
     createButtons();
 })
 
+//Creates a container holding the Rock, Paper, and Scissor Buttons
+function createButtonContainer(){
+    const container = document.createElement("container");
+    container.className = "container";
+    document.body.appendChild(container);
+}
+
+//Creates Rock, Paper, and Scissors Buttons
 function createButtons() {
     const rockBtn = document.createElement("button");
     rockBtn.className = "rock-button";
@@ -13,10 +21,11 @@ function createButtons() {
     scissorBtn.className = "scissor-button";
     scissorBtn.textContent = "Scissors";
 
-    document.body.appendChild(rockBtn);
-    document.body.appendChild(paperBtn);
-    document.body.appendChild(scissorBtn);
+    document.querySelector(".container").appendChild(rockBtn);
+    document.querySelector(".container").appendChild(paperBtn);
+    document.querySelector(".container").appendChild(scissorBtn);
 }
+
 
 // Randomly returns either Rock, Paper, or Scissors
 function getComputerChoice(){
