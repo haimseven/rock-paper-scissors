@@ -1,3 +1,23 @@
+document.addEventListener("DOMContentLoaded", function(){
+    createButtons();
+})
+
+function createButtons() {
+    const rockBtn = document.createElement("button");
+    rockBtn.className = "rock-button";
+    rockBtn.textContent = "Rock";
+    const paperBtn = document.createElement("button");
+    paperBtn.className = "paper-button";
+    paperBtn.textContent = "Paper";
+    const scissorBtn = document.createElement("button");
+    scissorBtn.className = "scissor-button";
+    scissorBtn.textContent = "Scissors";
+
+    document.body.appendChild(rockBtn);
+    document.body.appendChild(paperBtn);
+    document.body.appendChild(scissorBtn);
+}
+
 // Randomly returns either Rock, Paper, or Scissors
 function getComputerChoice(){
     // Generate a random number between 0 and 2
@@ -43,30 +63,6 @@ function playRound(playerSelection,computerSelection) {
         }
 }
 
-// Uses playRound to play best-of-five game that keeps score and reports a winner or loser at the end
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for (let round = 1; round <= 5; round++) {
-        const playerSelection = prompt("Enter your choice (Rock, Paper, or Scissors):");
-        const computerSelection = getComputerChoice(); 
-
-        console.log(`Round ${round}:`);
-        console.log(`Player chose ${playerSelection}`);
-        console.log(`Computer chose ${computerSelection}`);
-
-        const result = playRound(playerSelection, computerSelection);
-        console.log(result);
-
-        // Update scores based on the result
-        if (result.includes("Win")) {
-        playerScore++;
-        } else if (result.includes("Lose")) {
-        computerScore++;
-        }
-    }
-
     // Determine the winner of the game
     if (playerScore > computerScore) {
         console.log("You win the game!");
@@ -75,6 +71,6 @@ function game() {
     } else {
         console.log("It's a tie! No overall winner.");
     }
-}
+
 
 
