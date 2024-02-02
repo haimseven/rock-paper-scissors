@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function(){
     createButtonContainer();
     createButtons();
-})
+    addButtonClickListener("rockBtn", "rock");
+    addButtonClickListener("paperBtn", "paper");
+    addButtonClickListener("scissorsBtn", "scissors");
+});
 
 //Creates a container holding the Rock, Paper, and Scissor Buttons
 function createButtonContainer(){
-    const container = document.createElement("container");
+    const container = document.createElement("div");
     container.className = "container";
     document.body.appendChild(container);
 }
@@ -27,6 +30,15 @@ function createButtons() {
     document.querySelector(".container").appendChild(scissorBtn);
 }
 
+// Takes a button ID and a player selection as arguments and adds an event listener to the button. When the button is clicked, it calls the playRound function with the corresponding playerSelection
+function addButtonClickListener(buttonId, playerSelection) {
+    const button = document.getElementById(buttonId);
+    button.addEventListener("click", function() {
+        const computerSelection = getComputerChoice();
+        const result = playRound(playerSelection, computerSelection);
+        console.log(result);
+    });
+}
 
 // Randomly returns either Rock, Paper, or Scissors
 function getComputerChoice(){
