@@ -73,6 +73,7 @@
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 20px;
+    color: var(--color-sub);
   }
   
   .dashboard {
@@ -86,6 +87,7 @@
     flex-direction: column;
     align-items: center;
     margin: 0px 20px;
+    color: var(--color-sub);
   }
   .selection{
     display: flex;
