@@ -64,6 +64,13 @@ function playRound(playerSelection,computerSelection) {
     return log;
 }
 
+function createParaWithText(text) {
+    const p = document.createElement('p');
+    p.textContent = text;
+
+    return p;
+}
+
 // Uses playRound to play best-of-five game that keeps score and reports a winner or loser at the end
 function game() {
     for (let round = 1; round <= 5; round++) {
