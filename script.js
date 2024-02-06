@@ -1,3 +1,9 @@
+const images = Array.from(document.querySelectorAll('.card-image'));
+const message = document.querySelector('.message');
+const scorePlayer = document.querySelector('.player-score');
+const scoreComputer = document.querySelector('.computer-score');
+const selectionPlayer = document.querySelector('.player');
+const selectionComputer = document.querySelector('.computer');
 
 let playerScore = 0;
 let computerScore = 0;
@@ -14,18 +20,24 @@ images.forEach((image) =>
 
 // Randomly returns either Rock, Paper, or Scissors
 function getComputerChoice(){
-    const randomNumber = Math.floor(Math.random() * 3);
-
-    switch(randomNumber){
-        case 0:
-            return 'Rock';
-        case 1:
-            return 'Paper';
-        case 2:
-            return 'Scissors';
-        default:
-            return 'Rock';
+    let computerNumber = random(3);
+    let computerGuess = '';
+  
+    switch (computerNumber) {
+      case 1:
+        computerGuess = 'Rock';
+        break;
+      case 2:
+        computerGuess = 'Paper';
+        break;
+      case 3:
+        computerGuess = 'Scissors';
+        break;
+      default:
+        break;
     }
+  
+    return computerGuess;
 }
 
 // Plays a single round of Rock Paper Scissors using playerSelection and computerSelection.
@@ -73,12 +85,11 @@ function createParaWithText(text) {
 function game(playerSelect) {
     let playerSelection = capitalize(playerSelect);
     let computerSelection = getComputerChoice();
-  
     let roundResult = playRound(playerSelection, computerSelection);
   
-    if (roundResult.search('You Win!') > -1) {
+    if (roundResult.includes('You Win!')) {
       playerScore++;
-    } else if (roundResult.search('You Lose!') > -1) {
+    } else if (roundResult.includes('You Lose!')) {
       computerScore++;
     }
   
@@ -93,9 +104,12 @@ function game(playerSelect) {
     } else if (playerScore < 5 && computerScore >= 5) {
       message.textContent = 'Game Over. You Lose! Refresh the page to play again!';
     }
-}
+  }
   
   /* Helper Functions */
+  function random(number) {
+    return Math.floor(Math.random() * number + 1);
+  }
 function capitalize(string) {
     return (
       string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1)
