@@ -10,7 +10,7 @@ images.forEach((image) =>
         }
         game(image.dataset.image);
     })
-    );
+);
 
 // Randomly returns either Rock, Paper, or Scissors
 function getComputerChoice(){
@@ -34,27 +34,34 @@ function getComputerChoice(){
 // Returns a string that declares the winner of round
 // If round ends in a Tie, the round restarts
 function playRound(playerSelection,computerSelection) {
-    // Convert playerSelection to lowercase for case-insensitivity
-    const playerChoice = playerSelection.toLowerCase();
+    let log = '';
 
-    // Check for a tie
-    if (playerChoice === computerSelection.toLowerCase()) {
-        return "It's a tie! Play again.";
+    if (playerSelection === 'Rock') {
+      if (computerSelection === 'Paper') {
+        log = 'You Lose! Paper beats Rock';
+      } else if (computerSelection === 'Scissors') {
+        log = 'You Win! Rock beats Scissors';
+      } else {
+        log = "It's a tie";
+      }
+    } else if (playerSelection === 'Paper') {
+      if (computerSelection === 'Scissors') {
+        log = 'You Lose! Scissors beats Paper';
+      } else if (computerSelection === 'Rock') {
+        log = 'You Win! Paper beats Rock';
+      } else {
+        log = "It's a tie";
+      }
+    } else if (playerSelection === 'Scissors') {
+      if (computerSelection === 'Rock') {
+        log = 'You Lose! Rock beats Scissors';
+      } else if (computerSelection === 'Paper') {
+        log = 'You Win! Scissors beats Paper';
+      } else {
+        log = "It's a tie";
+      }
     }
-
-    // Check for player wins
-    else if (
-        (playerChoice === 'rock' && computerSelection.toLowerCase() === 'scissors') ||
-        (playerChoice === 'paper' && computerSelection.toLowerCase() === 'rock') ||
-        (playerChoice === 'scissors' && computerSelection.toLowerCase() === 'paper')
-    ) {
-        return `You Win! ${playerChoice} beats ${computerSelection}.`;
-    }
-    
-    // If not a tie and not a player win, then it's a computer win
-    else {
-            return `You Lose! ${computerSelection} beats ${playerChoice}.`;
-        }
+    return log;
 }
 
 // Uses playRound to play best-of-five game that keeps score and reports a winner or loser at the end
