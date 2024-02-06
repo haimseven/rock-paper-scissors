@@ -1,3 +1,17 @@
+
+let playerScore = 0;
+let computerScore = 0;
+
+// Starts game when user clicks on an image choice
+images.forEach((image) =>
+    image.addEventListener('click', () => {
+        if (playerScore >= 5 || computerScore >= 5){
+            return;
+        }
+        game(image.dataset.image);
+    })
+    );
+
 // Randomly returns either Rock, Paper, or Scissors
 function getComputerChoice(){
     // Generate a random number between 0 and 2
@@ -45,9 +59,6 @@ function playRound(playerSelection,computerSelection) {
 
 // Uses playRound to play best-of-five game that keeps score and reports a winner or loser at the end
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-
     for (let round = 1; round <= 5; round++) {
         const playerSelection = prompt("Enter your choice (Rock, Paper, or Scissors):");
         const computerSelection = getComputerChoice(); 
