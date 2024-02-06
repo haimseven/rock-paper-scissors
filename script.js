@@ -14,10 +14,8 @@ images.forEach((image) =>
 
 // Randomly returns either Rock, Paper, or Scissors
 function getComputerChoice(){
-    // Generate a random number between 0 and 2
     const randomNumber = Math.floor(Math.random() * 3);
 
-    // Assigns Rock, Paper, or Scissors based on the random number 
     switch(randomNumber){
         case 0:
             return 'Rock';
@@ -72,34 +70,36 @@ function createParaWithText(text) {
 }
 
 // Uses playRound to play best-of-five game that keeps score and reports a winner or loser at the end
-function game() {
-    for (let round = 1; round <= 5; round++) {
-        const playerSelection = prompt("Enter your choice (Rock, Paper, or Scissors):");
-        const computerSelection = getComputerChoice(); 
-
-        console.log(`Round ${round}:`);
-        console.log(`Player chose ${playerSelection}`);
-        console.log(`Computer chose ${computerSelection}`);
-
-        const result = playRound(playerSelection, computerSelection);
-        console.log(result);
-
-        // Update scores based on the result
-        if (result.includes("Win")) {
-        playerScore++;
-        } else if (result.includes("Lose")) {
-        computerScore++;
-        }
+function game(playerSelect) {
+    let playerSelection = capitalize(playerSelect);
+    let computerSelection = getComputerChoice();
+  
+    let roundResult = playRound(playerSelection, computerSelection);
+  
+    if (roundResult.search('You Win!') > -1) {
+      playerScore++;
+    } else if (roundResult.search('You Lose!') > -1) {
+      computerScore++;
     }
-
-    // Determine the winner of the game
-    if (playerScore > computerScore) {
-        console.log("You win the game!");
-    } else if (playerScore < computerScore) {
-        console.log("You lose the game.");
-    } else {
-        console.log("It's a tie! No overall winner.");
+  
+    scorePlayer.textContent = playerScore;
+    scoreComputer.textContent = computerScore;
+    message.textContent = roundResult;
+    selectionPlayer.appendChild(createParaWithText(playerSelection));
+    selectionComputer.appendChild(createParaWithText(computerSelection));
+  
+    if (playerScore >= 5 && computerScore < 5) {
+      message.textContent = 'Game Over. You Win! Refresh the page to play again!';
+    } else if (playerScore < 5 && computerScore >= 5) {
+      message.textContent = 'Game Over. You Lose! Refresh the page to play again!';
     }
+}
+  
+  /* Helper Functions */
+function capitalize(string) {
+    return (
+      string.toLowerCase().charAt(0).toUpperCase() + string.toLowerCase().slice(1)
+    );
 }
 
 
